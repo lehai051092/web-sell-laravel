@@ -23,10 +23,7 @@
                                 <select class="form-control">
                                     <option value="">--Selected--</option>
                                     <option value="0">Root category</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    {!! $htmlOption !!}
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
