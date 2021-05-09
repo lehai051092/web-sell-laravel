@@ -24,7 +24,7 @@
                                 <label>Select Parent</label>
                                 <select class="form-control" name="category_parent_id">
                                     <option value="">--Selected--</option>
-                                    <option value="{{ \App\Components\Category\CategoryRecursive::ROOT_PARENT_CATEGORY }}">New root category</option>
+                                    <option value="{{ \App\Http\Services\CategoryServiceInterface::ROOT_PARENT_CATEGORY }}">New root category</option>
                                     {!! $htmlOption !!}
                                 </select>
                             </div>

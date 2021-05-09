@@ -5,7 +5,9 @@ namespace App\Http\Services;
 
 interface CategoryServiceInterface
 {
-    function getData();
+    const ROOT_PARENT_CATEGORY = 0;
 
+    function getData();
     function createCategory($request);
+    function getCategoryRecursive($id);
 }
