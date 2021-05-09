@@ -6,6 +6,7 @@ namespace App\Http\Repositories\Eloquent;
 use App\Category;
 use App\Http\Repositories\CategoryRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
+use Throwable;
 
 class CategoryRepositoryEloquent implements CategoryRepositoryInterface
 {
@@ -30,5 +31,13 @@ class CategoryRepositoryEloquent implements CategoryRepositoryInterface
     function getData()
     {
         return $this->category->all();
+    }
+
+    /**
+     * @param $options
+     */
+    public function createNew($options)
+    {
+        $this->category->create($options);
     }
 }

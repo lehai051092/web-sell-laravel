@@ -9,11 +9,6 @@ use App\Http\Services\CategoryServiceInterface;
 class CategoryServiceImpl implements CategoryServiceInterface
 {
     /**
-     * @var string
-     */
-    protected $htmlSelect;
-
-    /**
      * @var CategoryRepositoryInterface
      */
     protected $categoryRepository;
@@ -25,7 +20,6 @@ class CategoryServiceImpl implements CategoryServiceInterface
     public function __construct(
         CategoryRepositoryInterface $categoryRepository
     ) {
-        $this->htmlSelect = '';
         $this->categoryRepository = $categoryRepository;
     }
 
@@ -38,19 +32,17 @@ class CategoryServiceImpl implements CategoryServiceInterface
     }
 
     /**
-     * @param $id
-     * @return string
+     * @param $request
+     * @return mixed
      */
-    public function getCategoryRecursive($id): string
+    function createCategory($request)
     {
-        $data = $this->getData();
-        foreach ($data as $value) {
-            if ($value['parent_id'] == $id) {
-                $this->htmlSelect .= "<option>" . $value['name'] . "</option>";
-                $this->getCategoryRecursive($value['id']);
-            }
-        }
+        $options = [
+            'name' => $request->category_name,
+            'parent_id' => $request->category_parent_id,
+            'slug' => str_slug($request->category_name)
+        ];
 
-        return $this->htmlSelect;
+        return $this->categoryRepository->createNew($options);
     }
 }

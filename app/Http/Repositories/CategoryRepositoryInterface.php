@@ -5,4 +5,5 @@ namespace App\Http\Repositories;
 
 interface CategoryRepositoryInterface {
     function getData();
+    function createNew($options);
 }
