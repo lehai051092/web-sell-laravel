@@ -13,7 +13,6 @@ class CategoryServiceImpl implements CategoryServiceInterface
      */
     private $htmlSelect;
 
-
     /**
      * @var CategoryRepositoryInterface
      */
@@ -25,8 +24,7 @@ class CategoryServiceImpl implements CategoryServiceInterface
      */
     public function __construct(
         CategoryRepositoryInterface $categoryRepository
-    )
-    {
+    ) {
         $this->categoryRepository = $categoryRepository;
         $this->htmlSelect = '';
     }
