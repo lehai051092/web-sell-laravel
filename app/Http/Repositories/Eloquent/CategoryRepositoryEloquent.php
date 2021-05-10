@@ -40,4 +40,13 @@ class CategoryRepositoryEloquent implements CategoryRepositoryInterface
     {
         $this->category->create($options);
     }
+
+    /**
+     * @param $qty
+     * @return mixed
+     */
+    function getDataPaginate($qty)
+    {
+        return $this->category->latest()->paginate($qty);
+    }
 }

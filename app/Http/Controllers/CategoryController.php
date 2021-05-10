@@ -32,7 +32,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('category.index');
+        $categories = $this->categoryService->getCategoriesPaginate(5);
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -52,5 +53,21 @@ class CategoryController extends Controller
     {
         $this->categoryService->createCategory($request);
         return redirect()->route('categories.index');
+    }
+
+    /**
+     * @param $id
+     */
+    public function edit($id)
+    {
+
+    }
+
+    /**
+     * @param $id
+     */
+    public function delete($id)
+    {
+
     }
 }

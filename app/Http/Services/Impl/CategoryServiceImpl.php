@@ -24,7 +24,8 @@ class CategoryServiceImpl implements CategoryServiceInterface
      */
     public function __construct(
         CategoryRepositoryInterface $categoryRepository
-    ) {
+    )
+    {
         $this->categoryRepository = $categoryRepository;
         $this->htmlSelect = '';
     }
@@ -69,5 +70,14 @@ class CategoryServiceImpl implements CategoryServiceInterface
         }
 
         return $this->htmlSelect;
+    }
+
+    /**
+     * @param $qty
+     * @return mixed
+     */
+    public function getCategoriesPaginate($qty)
+    {
+        return $this->categoryRepository->getDataPaginate($qty);
     }
 }
