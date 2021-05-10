@@ -20,4 +20,17 @@ interface CategoryRepositoryInterface {
      * @return mixed
      */
     function createNew($options);
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    function findById($id);
+
+    /**
+     * @param $id
+     * @param $options
+     * @return mixed
+     */
+    function updateCategory($id, $options);
 }

@@ -6,7 +6,6 @@ namespace App\Http\Repositories\Eloquent;
 use App\Category;
 use App\Http\Repositories\CategoryRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
-use Throwable;
 
 class CategoryRepositoryEloquent implements CategoryRepositoryInterface
 {
@@ -48,5 +47,24 @@ class CategoryRepositoryEloquent implements CategoryRepositoryInterface
     function getDataPaginate($qty)
     {
         return $this->category->latest()->paginate($qty);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    function findById($id)
+    {
+        return $this->category->findOrFail($id);
+    }
+
+    /**
+     * @param $id
+     * @param $options
+     * @return mixed
+     */
+    function updateCategory($id, $options)
+    {
+        $this->findById($id)->update($options);
     }
 }

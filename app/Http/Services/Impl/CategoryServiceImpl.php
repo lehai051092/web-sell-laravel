@@ -44,28 +44,28 @@ class CategoryServiceImpl implements CategoryServiceInterface
      */
     function createCategory($request)
     {
-        $options = [
-            'name' => $request->category_name,
-            'parent_id' => $request->category_parent_id,
-            'slug' => str_slug($request->category_name)
-        ];
-
+        $options = $this->arrayOptions($request);
         return $this->categoryRepository->createNew($options);
     }
 
     /**
      * @param $id
+     * @param $parentId
      * @param string $text
      * @return string
      */
-    public function getCategoryRecursive($id, $text = ''): string
+    public function getCategoryRecursive($id, $parentId, $text = ''): string
     {
         $data = $this->getData();
 
         foreach ($data as $key => $value) {
             if ($value['parent_id'] == $id) {
-                $this->htmlSelect .= "<option value='" . $value['id'] . "'>" . $text . $value['name'] . "</option>";
-                $this->getCategoryRecursive($value['id'], $text . '--');
+                if (isset($parentId) && $parentId === $value['id']) {
+                    $this->htmlSelect .= "<option selected value='" . $value['id'] . "'>" . $text . $value['name'] . "</option>";
+                } else {
+                    $this->htmlSelect .= "<option value='" . $value['id'] . "'>" . $text . $value['name'] . "</option>";
+                }
+                $this->getCategoryRecursive($value['id'], $parentId, $text . '--');
             }
         }
 
@@ -79,5 +79,38 @@ class CategoryServiceImpl implements CategoryServiceInterface
     public function getCategoriesPaginate($qty)
     {
         return $this->categoryRepository->getDataPaginate($qty);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function findById($id)
+    {
+        return $this->categoryRepository->findById($id);
+    }
+
+    /**
+     * @param $id
+     * @param $request
+     * @return mixed
+     */
+    public function updateCategory($id, $request)
+    {
+        $options = $this->arrayOptions($request);
+        return $this->categoryRepository->updateCategory($id, $options);
+    }
+
+    /**
+     * @param $request
+     * @return array
+     */
+    protected function arrayOptions($request): array
+    {
+        return [
+            'name' => $request->category_name,
+            'parent_id' => $request->category_parent_id,
+            'slug' => str_slug($request->category_name)
+        ];
     }
 }

@@ -20,13 +20,27 @@ interface CategoryServiceInterface
 
     /**
      * @param $id
+     * @param $parentId
      * @return mixed
      */
-    function getCategoryRecursive($id);
+    function getCategoryRecursive($id, $parentId);
 
     /**
      * @param $qty
      * @return mixed
      */
     function getCategoriesPaginate($qty);
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    function findById($id);
+
+    /**
+     * @param $id
+     * @param $request
+     * @return mixed
+     */
+    function updateCategory($id, $request);
 }

@@ -41,7 +41,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $htmlOption = $this->categoryService->getCategoryRecursive(CategoryServiceInterface::ROOT_PARENT_CATEGORY);
+        $htmlOption = $this->categoryService->getCategoryRecursive(CategoryServiceInterface::ROOT_PARENT_CATEGORY, $parentId = '');
         return view('category.add', compact('htmlOption'));
     }
 
@@ -57,10 +57,24 @@ class CategoryController extends Controller
 
     /**
      * @param $id
+     * @return Application|Factory|View
      */
     public function edit($id)
     {
+        $category = $this->categoryService->findById($id);
+        $htmlOption = $this->categoryService->getCategoryRecursive(CategoryServiceInterface::ROOT_PARENT_CATEGORY, $category->parent_id);
+        return view('category.edit', compact('category', 'htmlOption'));
+    }
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function update($id, Request $request): RedirectResponse
+    {
+        $this->categoryService->updateCategory($id, $request);
+        return redirect()->route('categories.index');
     }
 
     /**
