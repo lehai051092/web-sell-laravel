@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="content-wrapper">
-    @include('partials.header.content', ['name' => 'Category', 'key' => 'List'])
+        @include('partials.header.content', ['name' => 'Category', 'key' => 'List'])
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -29,10 +29,15 @@
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>{{ $category->name }}</td>
                                     <td>
-                                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn-default"><i class="fas fa-edit fa-2x"></i></a>
+                                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}"
+                                           class="btn-default"><i class="fas fa-edit fa-2x"></i></a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn-default"><i class="fas fa-trash fa-2x"></i></a>
+                                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}"
+                                           class="btn-default"
+                                           onclick="confirm('You want to delete {{ $category->name }} ?')">
+                                            <i class="fas fa-trash fa-2x"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
