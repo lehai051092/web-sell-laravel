@@ -43,4 +43,10 @@ interface CategoryServiceInterface
      * @return mixed
      */
     function updateCategory($id, $request);
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    function deleteCategory($id);
 }

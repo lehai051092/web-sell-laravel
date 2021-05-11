@@ -79,9 +79,11 @@ class CategoryController extends Controller
 
     /**
      * @param $id
+     * @return RedirectResponse
      */
-    public function delete($id)
+    public function delete($id): RedirectResponse
     {
-
+        $this->categoryService->deleteCategory($id);
+        return redirect()->route('categories.index');
     }
 }

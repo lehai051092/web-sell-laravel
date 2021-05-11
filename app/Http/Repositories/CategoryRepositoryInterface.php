@@ -33,4 +33,10 @@ interface CategoryRepositoryInterface {
      * @return mixed
      */
     function updateCategory($id, $options);
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    function deleteById($id);
 }

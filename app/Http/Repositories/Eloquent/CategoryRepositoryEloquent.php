@@ -27,7 +27,7 @@ class CategoryRepositoryEloquent implements CategoryRepositoryInterface
     /**
      * @return Category[]|Collection
      */
-    function getData()
+    public function getData()
     {
         return $this->category->all();
     }
@@ -44,7 +44,7 @@ class CategoryRepositoryEloquent implements CategoryRepositoryInterface
      * @param $qty
      * @return mixed
      */
-    function getDataPaginate($qty)
+    public function getDataPaginate($qty)
     {
         return $this->category->latest()->paginate($qty);
     }
@@ -53,7 +53,7 @@ class CategoryRepositoryEloquent implements CategoryRepositoryInterface
      * @param $id
      * @return mixed
      */
-    function findById($id)
+    public function findById($id)
     {
         return $this->category->findOrFail($id);
     }
@@ -63,8 +63,17 @@ class CategoryRepositoryEloquent implements CategoryRepositoryInterface
      * @param $options
      * @return mixed
      */
-    function updateCategory($id, $options)
+    public function updateCategory($id, $options)
     {
         $this->findById($id)->update($options);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    function deleteById($id)
+    {
+        $this->findById($id)->delete();
     }
 }

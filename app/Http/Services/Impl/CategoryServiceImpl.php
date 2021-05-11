@@ -24,8 +24,7 @@ class CategoryServiceImpl implements CategoryServiceInterface
      */
     public function __construct(
         CategoryRepositoryInterface $categoryRepository
-    )
-    {
+    ) {
         $this->categoryRepository = $categoryRepository;
         $this->htmlSelect = '';
     }
@@ -112,5 +111,14 @@ class CategoryServiceImpl implements CategoryServiceInterface
             'parent_id' => $request->category_parent_id,
             'slug' => str_slug($request->category_name)
         ];
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    function deleteCategory($id)
+    {
+        return $this->deleteCategory($id);
     }
 }
