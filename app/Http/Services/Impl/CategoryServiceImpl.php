@@ -119,6 +119,6 @@ class CategoryServiceImpl implements CategoryServiceInterface
      */
     function deleteCategory($id)
     {
-        return $this->deleteCategory($id);
+        return $this->categoryRepository->deleteById($id);
     }
 }
