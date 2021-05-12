@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layout.admin')
 
 @section('title')
     <title>Category Add Page</title>
@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="content-wrapper">
-        @include('partials.header.content', ['name' => 'Category', 'key' => 'Add'])
+        @include('admin.partials.header.content', ['name' => 'Category', 'key' => 'Add'])
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
