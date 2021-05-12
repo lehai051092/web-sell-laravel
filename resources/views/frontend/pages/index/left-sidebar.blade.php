@@ -132,6 +132,6 @@
     </div>
 
     <div class="shipping text-center">
-        <img src="{{ asset('public/frontendimages/home/shipping.jpg') }}" alt=""/>
+        <img src="{{ asset('public/frontend/images/home/shipping.jpg') }}" alt=""/>
     </div>
 </div>
