@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Http\Repositories\CategoryRepositoryInterface;
-use App\Http\Repositories\Eloquent\CategoryRepositoryEloquent;
-use App\Http\Services\CategoryServiceInterface;
-use App\Http\Services\Impl\CategoryServiceImpl;
+use App\Http\Repositories\Backend\Index\Eloquent\UserAdminRepositoryEloquent;
+use App\Http\Repositories\Backend\Index\UserAdminRepositoryInterface;
+use App\Http\Services\Backend\Index\Impl\UserAdminServiceImpl;
+use App\Http\Services\Backend\Index\UserAdminServiceInterface;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -18,8 +18,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepositoryEloquent::class);
-        $this->app->singleton(CategoryServiceInterface::class, CategoryServiceImpl::class);
+        $this->app->singleton(UserAdminRepositoryInterface::class, UserAdminRepositoryEloquent::class);
+        $this->app->singleton(UserAdminServiceInterface::class, UserAdminServiceImpl::class);
     }
 
     /**

@@ -15,40 +15,26 @@
 // Frontend
 Route::get('/', [
     'as' => 'frontend.index',
-    'uses' => 'Index\IndexController@index',
+    'uses' => 'Frontend\Index\IndexController@index',
 ]);
 
 // Admin
-//Route::prefix('admin')->group(function () {
-//    Route::get('/', [
-//        'as' => '',
-//        'uses' => ''
-//    ]);
-//});
-//
-//Route::prefix('categories')->group(function () {
-//    Route::get('/', [
-//        'as' => 'categories.index',
-//        'uses' => 'CategoryController@index',
-//    ]);
-//    Route::get('/create', [
-//        'as' => 'categories.create',
-//        'uses' => 'CategoryController@create',
-//    ]);
-//    Route::post('/store', [
-//        'as' => 'categories.store',
-//        'uses' => 'CategoryController@store',
-//    ]);
-//    Route::get('/edit/{id}', [
-//        'as' => 'categories.edit',
-//        'uses' => 'CategoryController@edit',
-//    ]);
-//    Route::post('/update/{id}', [
-//        'as' => 'categories.update',
-//        'uses' => 'CategoryController@update',
-//    ]);
-//    Route::get('/delete/{id}', [
-//        'as' => 'categories.delete',
-//        'uses' => 'CategoryController@delete',
-//    ]);
-//});
+Route::prefix('admin')->group(function () {
+    Route::get('/', [
+        'as' => 'backend.index',
+        'uses' => 'Backend\Index\IndexController@index'
+    ]);
+    Route::get('/dashboard', [
+        'as' => 'backend.dashboard',
+        'uses' => 'Backend\Index\IndexController@showDashboard'
+    ]);
+    Route::post('/login', [
+        'as' => 'backend.login.dashboard',
+        'uses' => 'Backend\Index\IndexController@loginDashBoard'
+    ]);
+    Route::get('/logout', [
+        'as' => 'backend.logout.dashboard',
+        'uses' => 'Backend\Index\IndexController@logoutDashBoard'
+    ]);
+});
+
