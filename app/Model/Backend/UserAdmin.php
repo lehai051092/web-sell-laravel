@@ -9,7 +9,7 @@ class UserAdmin extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'users_admin';
+    protected $table = 'ws_users_admin';
 
     protected $fillable = ['admin_email', 'admin_name', 'admin_phone'];
 

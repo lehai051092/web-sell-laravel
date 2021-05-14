@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Index;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Services\Backend\Index\UserAdminServiceInterface;
 use Illuminate\Http\RedirectResponse;
@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 
-class IndexController extends Controller
+class Index extends Controller
 {
     /**
      * @var UserAdminServiceInterface

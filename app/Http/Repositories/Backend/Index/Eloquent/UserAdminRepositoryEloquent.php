@@ -39,7 +39,7 @@ class UserAdminRepositoryEloquent implements UserAdminRepositoryInterface
      */
     function isUser($email, $password)
     {
-        return DB::table('users_admin')
+        return DB::table('ws_users_admin')
             ->where('admin_email', $email)
             ->where('admin_password', $password)->first();
     }

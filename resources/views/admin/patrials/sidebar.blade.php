@@ -11,12 +11,11 @@
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>UI Elements</span>
+                        <span>Categories</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="">Typography</a></li>
-                        <li><a href="">glyphicon</a></li>
-                        <li><a href="">Grids</a></li>
+                        <li><a href="{{ route('backend.categories.list') }}">List</a></li>
+                        <li><a href="{{ route('backend.categories.add') }}">Add new category</a></li>
                     </ul>
                 </li>
             </ul>

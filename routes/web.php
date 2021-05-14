@@ -15,26 +15,42 @@
 // Frontend
 Route::get('/', [
     'as' => 'frontend.index',
-    'uses' => 'Frontend\Index\IndexController@index',
+    'uses' => 'Frontend\Index@index',
 ]);
 
 // Admin
 Route::prefix('admin')->group(function () {
     Route::get('/', [
         'as' => 'backend.index',
-        'uses' => 'Backend\Index\IndexController@index'
+        'uses' => 'Backend\Index@index'
     ]);
     Route::get('/dashboard', [
         'as' => 'backend.dashboard',
-        'uses' => 'Backend\Index\IndexController@showDashboard'
+        'uses' => 'Backend\Index@showDashboard'
     ]);
     Route::post('/login', [
         'as' => 'backend.login.dashboard',
-        'uses' => 'Backend\Index\IndexController@loginDashBoard'
+        'uses' => 'Backend\Index@loginDashBoard'
     ]);
     Route::get('/logout', [
         'as' => 'backend.logout.dashboard',
-        'uses' => 'Backend\Index\IndexController@logoutDashBoard'
+        'uses' => 'Backend\Index@logoutDashBoard'
     ]);
+
+    // Categories
+    Route::prefix('categories')->group(function () {
+        Route::get('/list', [
+            'as' => 'backend.categories.list',
+            'uses' => 'Backend\Categories\Show@showCategories'
+        ]);
+        Route::get('/add', [
+            'as' => 'backend.categories.add',
+            'uses' => 'Backend\Categories\Add@redirectAdd'
+        ]);
+        Route::post('/create', [
+            'as' => 'backend.categories.create',
+            'uses' => 'Backend\Categories\Add@createCategory'
+        ]);
+    });
 });
 
