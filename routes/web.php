@@ -41,7 +41,7 @@ Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
         Route::get('/list', [
             'as' => 'backend.categories.list',
-            'uses' => 'Backend\Categories\Show@showCategories'
+            'uses' => 'Backend\Categories\Index@showCategories'
         ]);
         Route::get('/add', [
             'as' => 'backend.categories.add',
@@ -50,6 +50,18 @@ Route::prefix('admin')->group(function () {
         Route::post('/create', [
             'as' => 'backend.categories.create',
             'uses' => 'Backend\Categories\Add@createCategory'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'backend.categories.edit',
+            'uses' => 'Backend\Categories\Update@redirectEdit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'backend.categories.update',
+            'uses' => 'Backend\Categories\Update@updateCategory'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'backend.categories.delete',
+            'uses' => 'Backend\Categories\Delete@deleteCategory'
         ]);
     });
 });

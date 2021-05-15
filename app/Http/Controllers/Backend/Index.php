@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Services\Backend\Index\UserAdminServiceInterface;
+use App\Services\Backend\Interfaces\UsersAdminServiceInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,16 +11,17 @@ use Illuminate\View\View;
 class Index extends Controller
 {
     /**
-     * @var UserAdminServiceInterface
+     * @var UsersAdminServiceInterface
      */
     protected $userAdminService;
 
     /**
      * IndexController constructor.
-     * @param UserAdminServiceInterface $userAdminService
+     * @param UsersAdminServiceInterface $userAdminService
      */
-    public function __construct(UserAdminServiceInterface $userAdminService)
-    {
+    public function __construct(
+        UsersAdminServiceInterface $userAdminService
+    ) {
         $this->userAdminService = $userAdminService;
     }
 
@@ -46,7 +47,7 @@ class Index extends Controller
      */
     public function loginDashBoard(Request $request): RedirectResponse
     {
-        return $this->userAdminService->checkUser($request);
+        return $this->userAdminService->checkUserLogin($request);
     }
 
     /**

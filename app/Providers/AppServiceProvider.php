@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use App\Http\Repositories\Backend\Categories\CategoriesRepositoryInterface;
-use App\Http\Repositories\Backend\Categories\Eloquent\CategoriesRepositoryEloquent;
-use App\Http\Repositories\Backend\Index\Eloquent\UserAdminRepositoryEloquent;
-use App\Http\Repositories\Backend\Index\UserAdminRepositoryInterface;
-use App\Http\Services\Backend\Categories\CategoriesServiceInterface;
-use App\Http\Services\Backend\Categories\Impl\CategoriesServiceImpl;
-use App\Http\Services\Backend\Index\Impl\UserAdminServiceImpl;
-use App\Http\Services\Backend\Index\UserAdminServiceInterface;
+use App\Repositories\Backend\Eloquent\CategoriesRepository;
+use App\Repositories\Backend\Eloquent\UsersAdminRepository;
+use App\Repositories\Backend\Interfaces\CategoriesRepositoryInterface;
+use App\Repositories\Backend\Interfaces\UsersAdminRepositoryInterface;
+use App\Services\Backend\Impl\CategoriesService;
+use App\Services\Backend\Impl\UsersAdminService;
+use App\Services\Backend\Interfaces\CategoriesServiceInterface;
+use App\Services\Backend\Interfaces\UsersAdminServiceInterface;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -23,11 +23,11 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         // index
-        $this->app->singleton(UserAdminRepositoryInterface::class, UserAdminRepositoryEloquent::class);
-        $this->app->singleton(UserAdminServiceInterface::class, UserAdminServiceImpl::class);
+        $this->app->singleton(UsersAdminRepositoryInterface::class, UsersAdminRepository::class);
+        $this->app->singleton(UsersAdminServiceInterface::class, UsersAdminService::class);
         // categories
-        $this->app->singleton(CategoriesRepositoryInterface::class, CategoriesRepositoryEloquent::class);
-        $this->app->singleton(CategoriesServiceInterface::class, CategoriesServiceImpl::class);
+        $this->app->singleton(CategoriesRepositoryInterface::class, CategoriesRepository::class);
+        $this->app->singleton(CategoriesServiceInterface::class, CategoriesService::class);
     }
 
     /**

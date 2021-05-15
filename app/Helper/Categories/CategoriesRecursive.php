@@ -5,7 +5,17 @@ namespace App\Helper\Categories;
 
 class CategoriesRecursive
 {
-    private $htmlSelect;
+    private $htmlSelect = '';
+    private $data;
+
+    /**
+     * CategoriesRecursive constructor.
+     * @param $data
+     */
+    public function __construct($data)
+    {
+        $this->data = $data;
+    }
 
     /**
      * @param $id
@@ -13,18 +23,16 @@ class CategoriesRecursive
      * @param string $text
      * @return string
      */
-    public function getCategoryRecursive($id, $parentId, $text = ''): string
+    public function getCategoriesRecursive($id, $parentId, $text = ''): string
     {
-        $data = '';
-
-        foreach ($data as $key => $value) {
-            if ($value['parent_id'] == $id) {
-                if (isset($parentId) && $parentId === $value['id']) {
-                    $this->htmlSelect .= "<option selected value='" . $value['id'] . "'>" . $text . $value['name'] . "</option>";
+        foreach ($this->data as $key => $value) {
+            if ($value['category_parent'] == $id) {
+                if (isset($parentId) && $parentId == $value['category_id']) {
+                    $this->htmlSelect .= "<option selected value='" . $value['category_id'] . "'>" . $text . $value['category_name'] . "</option>";
                 } else {
-                    $this->htmlSelect .= "<option value='" . $value['id'] . "'>" . $text . $value['name'] . "</option>";
+                    $this->htmlSelect .= "<option value='" . $value['category_id'] . "'>" . $text . $value['category_name'] . "</option>";
                 }
-                $this->getCategoryRecursive($value['id'], $parentId, $text . '--');
+                $this->getCategoriesRecursive($value['category_id'], $parentId, $text . '--');
             }
         }
 

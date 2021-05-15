@@ -2,33 +2,18 @@
 
 namespace App\Http\Controllers\Backend\Categories;
 
-use App\Http\Services\Backend\Categories\CategoriesServiceInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class Add extends Controller
+class Add extends Index
 {
-    /**
-     * @var CategoriesServiceInterface
-     */
-    protected $categoriesService;
-
-    /**
-     * Add constructor.
-     * @param CategoriesServiceInterface $categoriesService
-     */
-    public function __construct(CategoriesServiceInterface $categoriesService)
-    {
-        $this->categoriesService = $categoriesService;
-    }
-
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function redirectAdd()
     {
-        return view('admin.pages.categories.form-add');
+        $htmlOption = $this->categoriesService->getCategoriesRecursive($parentId = '');
+        return view('admin.pages.categories.form-add', compact('htmlOption'));
     }
 
     /**

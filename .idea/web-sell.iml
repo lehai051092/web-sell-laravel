@@ -7,8 +7,6 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/Unit" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/app/Http/Controllers/Backend" isTestSource="false" packagePrefix="App\Http\Controllers\Backend\" />
-      <sourceFolder url="file://$MODULE_DIR$/app/Http/Controllers/Frontend" isTestSource="false" packagePrefix="App\Http\Controllers\Frontend\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-parallel-lint/php-console-highlighter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-parallel-lint/php-console-color" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />

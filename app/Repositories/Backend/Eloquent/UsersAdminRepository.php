@@ -1,14 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Repositories\Backend\Index\Eloquent;
+namespace App\Repositories\Backend\Eloquent;
 
-use App\Http\Repositories\Backend\Index\UserAdminRepositoryInterface;
 use App\Model\Backend\UserAdmin;
+use App\Repositories\Backend\Interfaces\UsersAdminRepositoryInterface;
 use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Facades\DB;
 
-class UserAdminRepositoryEloquent implements UserAdminRepositoryInterface
+class UsersAdminRepository implements UsersAdminRepositoryInterface
 {
     /**
      * @var UserAdmin
@@ -19,13 +18,14 @@ class UserAdminRepositoryEloquent implements UserAdminRepositoryInterface
      * UserAdminRepositoryEloquent constructor.
      * @param UserAdmin $userAdmin
      */
-    public function __construct(UserAdmin $userAdmin)
-    {
+    public function __construct(
+        UserAdmin $userAdmin
+    ) {
         $this->userAdmin = $userAdmin;
     }
 
     /**
-     * @return UserAdmin[]|\Illuminate\Database\Eloquent\Collection
+     * @return UsersAdminRepository[]|\Illuminate\Database\Eloquent\Collection
      */
     function getData()
     {
@@ -39,8 +39,6 @@ class UserAdminRepositoryEloquent implements UserAdminRepositoryInterface
      */
     function isUser($email, $password)
     {
-        return DB::table('ws_users_admin')
-            ->where('admin_email', $email)
-            ->where('admin_password', $password)->first();
+        return $this->userAdmin->where('admin_email', $email)->where('admin_password', $password)->first();
     }
 }

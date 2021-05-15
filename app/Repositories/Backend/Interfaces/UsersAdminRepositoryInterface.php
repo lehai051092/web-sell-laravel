@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Repositories\Backend\Index;
+namespace App\Repositories\Backend\Interfaces;
 
-interface UserAdminRepositoryInterface
+interface UsersAdminRepositoryInterface
 {
     function getData();
 

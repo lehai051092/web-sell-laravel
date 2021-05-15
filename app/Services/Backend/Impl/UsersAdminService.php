@@ -1,26 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Services\Backend\Index\Impl;
+namespace App\Services\Backend\Impl;
 
-use App\Http\Repositories\Backend\Index\UserAdminRepositoryInterface;
-use App\Http\Services\Backend\Index\UserAdminServiceInterface;
+use App\Repositories\Backend\Interfaces\UsersAdminRepositoryInterface;
+use App\Services\Backend\Interfaces\UsersAdminServiceInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session;
 
-class UserAdminServiceImpl implements UserAdminServiceInterface
+class UsersAdminService implements UsersAdminServiceInterface
 {
     /**
-     * @var UserAdminRepositoryInterface
+     * @var UsersAdminRepositoryInterface
      */
     protected $userAdminRepository;
 
     /**
      * UserAdminServiceImpl constructor.
-     * @param UserAdminRepositoryInterface $userAdminRepository
+     * @param UsersAdminRepositoryInterface $userAdminRepository
      */
-    public function __construct(UserAdminRepositoryInterface $userAdminRepository)
-    {
+    public function __construct(
+        UsersAdminRepositoryInterface $userAdminRepository
+    ) {
         $this->userAdminRepository = $userAdminRepository;
     }
 
@@ -36,7 +37,7 @@ class UserAdminServiceImpl implements UserAdminServiceInterface
      * @param $request
      * @return RedirectResponse
      */
-    function checkUser($request): RedirectResponse
+    function checkUserLogin($request): RedirectResponse
     {
         $user = $this->userAdminRepository->isUser($request->admin_email, md5($request->admin_password));
 
