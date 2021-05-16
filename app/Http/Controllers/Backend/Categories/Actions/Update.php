@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Categories;
+namespace App\Http\Controllers\Backend\Categories\Actions;
 
+use App\Http\Controllers\Backend\Categories\Index;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class Update extends Index
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function redirectEdit($id)
+    public function redirectEditCategory($id)
     {
         $category = $this->categoriesService->findById($id);
         $htmlOption = $this->categoriesService->getCategoriesRecursive($category->category_parent);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Backend;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,5 +11,5 @@ class Category extends Model
 
     protected $table = 'ws_categories';
     protected $primaryKey = 'category_id';
-    protected $fillable = ['category_name', 'category_active', 'category_parent'];
+    protected $fillable = ['category_name', 'category_status', 'category_parent'];
 }

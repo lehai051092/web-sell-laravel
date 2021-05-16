@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Categories;
+namespace App\Http\Controllers\Backend\Categories\Actions;
 
+use App\Http\Controllers\Backend\Categories\Index;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 

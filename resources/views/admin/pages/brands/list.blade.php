@@ -1,12 +1,12 @@
 @extends('admin.layout')
 @section('title')
-    <title>Categories List</title>
+    <title>Brand List</title>
 @endsection
 @section('content')
     <div class="table-agile-info">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Categories List
+                Brand List
             </div>
             <div class="table-responsive">
                 <table class="table table-striped b-t b-light">
@@ -15,31 +15,29 @@
                         <th style="width:20px;">#</th>
                         <th>Name</th>
                         <th>Status</th>
-                        <th>Parent</th>
                         <th style="width:30px;"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($categories as $key => $category)
+                    @foreach($brands as $key => $brand)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ $category->category_name }}</td>
+                            <td>{{ $brand->brand_name }}</td>
                             <td>
-                                @if($category->category_status == \App\Helper\VariablesInterface::OPTION_VALUE_ACTIVE)
+                                @if($brand->brand_status == \App\Helper\VariablesInterface::OPTION_VALUE_ACTIVE)
                                     Active
                                 @else
                                     Disable
                                 @endif
                             </td>
-                            <td>{{ $category->category_parent }}</td>
                             <td>
-                                <a href="{{ route('backend.categories.edit', ['id' => $category->category_id] ) }}"
+                                <a href="{{ route('backend.brands.edit', ['id' => $brand->brand_id] ) }}"
                                    class="active">
                                     <i class="fa fa-edit text-success text-active"></i>
                                 </a>
-                                <a href="{{ route('backend.categories.delete', ['id' => $category->category_id]) }}"
+                                <a href="{{ route('backend.brands.delete', ['id' => $brand->brand_id]) }}"
                                    class="active"
-                                   onclick="confirm('You want to delete {{ $category->category_name }} ?')">
+                                   onclick="confirm('You want to delete {{ $brand->brand_name }} ?')">
                                     <i class="fa fa-times text-danger text"></i>
                                 </a>
                             </td>
@@ -51,7 +49,7 @@
             <footer class="panel-footer">
                 <div class="row">
                     <div class="col-sm-12 text-center text-center-xs">
-                        {{ $categories->links() }}
+                        {{ $brands->links() }}
                     </div>
                 </div>
             </footer>

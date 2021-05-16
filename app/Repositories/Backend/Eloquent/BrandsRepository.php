@@ -3,31 +3,31 @@ declare(strict_types=1);
 
 namespace App\Repositories\Backend\Eloquent;
 
-use App\Model\Category;
-use App\Repositories\Backend\Interfaces\CategoriesRepositoryInterface;
+use App\Model\Brand;
+use App\Repositories\Backend\Interfaces\BrandsRepositoryInterface;
 
-class CategoriesRepository implements CategoriesRepositoryInterface
+class BrandsRepository implements BrandsRepositoryInterface
 {
     /**
-     * @var Category
+     * @var Brand
      */
-    protected $category;
+    protected $brand;
 
     /**
      * CategoriesRepositoryEloquent constructor.
-     * @param Category $category
+     * @param Brand $brand
      */
-    public function __construct(Category $category)
+    public function __construct(Brand $brand)
     {
-        $this->category = $category;
+        $this->brand = $brand;
     }
 
     /**
-     * @return Category[]|\Illuminate\Database\Eloquent\Collection
+     * @return Brand[]|\Illuminate\Database\Eloquent\Collection
      */
     public function getData()
     {
-        return $this->category->all();
+        return $this->brand->all();
     }
 
     /**
@@ -36,16 +36,16 @@ class CategoriesRepository implements CategoriesRepositoryInterface
      */
     public function create($options)
     {
-        return $this->category->create($options);
+        return $this->brand->create($options);
     }
 
     /**
      * @param $limit
      * @return mixed
      */
-    public function getCategoriesPaginate($limit)
+    public function getBrandsPaginate($limit)
     {
-        return $this->category->paginate($limit);
+        return $this->brand->paginate($limit);
     }
 
     /**
@@ -54,7 +54,7 @@ class CategoriesRepository implements CategoriesRepositoryInterface
      */
     public function findById($id)
     {
-        return $this->category->findOrFail($id);
+        return $this->brand->findOrFail($id);
     }
 
     /**

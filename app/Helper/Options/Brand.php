@@ -5,7 +5,7 @@ namespace App\Helper\Options;
 
 use App\Helper\OptionsAbstract;
 
-class Category extends OptionsAbstract
+class Brand extends OptionsAbstract
 {
     /**
      * @param $request
@@ -14,9 +14,8 @@ class Category extends OptionsAbstract
     function optionArray($request): array
     {
         return [
-            'category_name' => $request->category_name,
-            'category_status' => $request->category_status,
-            'category_parent' => $request->category_parent
+            'brand_name' => $request->brand_name,
+            'brand_status' => $request->brand_status
         ];
     }
 }
