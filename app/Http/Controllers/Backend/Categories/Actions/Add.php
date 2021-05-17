@@ -24,6 +24,6 @@ class Add extends Index
     public function createCategory(Request $request): RedirectResponse
     {
         $this->categoriesService->createCategory($request);
-        return redirect()->route('backend.categories.list');
+        return redirect()->route('backend.categories.index');
     }
 }

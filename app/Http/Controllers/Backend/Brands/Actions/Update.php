@@ -26,6 +26,6 @@ class Update extends Index
     public function updateBrand($id, Request $request): RedirectResponse
     {
         $this->brandsService->updateBrand($id, $request);
-        return redirect()->route('backend.brands.list');
+        return redirect()->route('backend.brands.index');
     }
 }

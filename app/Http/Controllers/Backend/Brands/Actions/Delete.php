@@ -15,6 +15,6 @@ class Delete extends Index
     public function deleteBrand($id): RedirectResponse
     {
         $this->brandsService->deleteBrand($id);
-        return redirect()->route('backend.brands.list');
+        return redirect()->route('backend.brands.index');
     }
 }

@@ -15,6 +15,6 @@ class Delete extends Index
     public function deleteCategory($id): RedirectResponse
     {
         $this->categoriesService->deleteCategory($id);
-        return redirect()->route('backend.categories.list');
+        return redirect()->route('backend.categories.index');
     }
 }

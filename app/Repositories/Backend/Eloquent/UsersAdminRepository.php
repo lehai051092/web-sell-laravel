@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Backend\Eloquent;
 
-use App\Model\Backend\UserAdmin;
+use App\Model\UserAdmin;
 use App\Repositories\Backend\Interfaces\UsersAdminRepositoryInterface;
 use Illuminate\Database\Query\Builder;
 

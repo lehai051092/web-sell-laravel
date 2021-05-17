@@ -27,6 +27,6 @@ class Update extends Index
     public function updateCategory($id, Request $request): RedirectResponse
     {
         $this->categoriesService->updateCategory($id, $request);
-        return redirect()->route('backend.categories.list');
+        return redirect()->route('backend.categories.index');
     }
 }

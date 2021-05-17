@@ -14,7 +14,7 @@
                         <span>Categories</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('backend.categories.list') }}">List</a></li>
+                        <li><a href="{{ route('backend.categories.index') }}">List</a></li>
                         <li><a href="{{ route('backend.categories.add') }}">Add new category</a></li>
                     </ul>
                 </li>
@@ -24,8 +24,18 @@
                         <span>Brands</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('backend.brands.list') }}">List</a></li>
+                        <li><a href="{{ route('backend.brands.index') }}">List</a></li>
                         <li><a href="{{ route('backend.brands.add') }}">Add new brand</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-book"></i>
+                        <span>Products</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{ route('backend.products.index') }}">List</a></li>
+                        <li><a href="{{ route('backend.products.add') }}">Add new brand</a></li>
                     </ul>
                 </li>
             </ul>

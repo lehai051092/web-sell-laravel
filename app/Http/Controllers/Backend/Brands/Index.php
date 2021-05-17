@@ -30,6 +30,6 @@ class Index extends Controller
     public function listBrand()
     {
         $brands = $this->brandsService->getBrandsPaginate(VariablesInterface::LIMIT_PAGINATE_PAGE);
-        return view('admin.pages.brands.list', compact('brands'));
+        return view('admin.pages.brands.index', compact('brands'));
     }
 }

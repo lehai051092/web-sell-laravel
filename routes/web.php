@@ -39,8 +39,8 @@ Route::prefix('admin')->group(function () {
 
     // Categories
     Route::prefix('categories')->group(function () {
-        Route::get('/list', [
-            'as' => 'backend.categories.list',
+        Route::get('/', [
+            'as' => 'backend.categories.index',
             'uses' => 'Backend\Categories\Index@listCategory'
         ]);
         Route::get('/add', [
@@ -67,8 +67,8 @@ Route::prefix('admin')->group(function () {
 
     // Brands
     Route::prefix('brands')->group(function () {
-        Route::get('/list', [
-            'as' => 'backend.brands.list',
+        Route::get('/', [
+            'as' => 'backend.brands.index',
             'uses' => 'Backend\Brands\Index@listBrand'
         ]);
         Route::get('/add', [
@@ -90,6 +90,34 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [
             'as' => 'backend.brands.delete',
             'uses' => 'Backend\Brands\Actions\Delete@deleteBrand'
+        ]);
+    });
+
+    // Products
+    Route::prefix('products')->group(function () {
+        Route::get('/', [
+            'as' => 'backend.products.index',
+            'uses' => 'Backend\Products\Index@listProduct'
+        ]);
+        Route::get('/add', [
+            'as' => 'backend.products.add',
+            'uses' => 'Backend\Products\Actions\Add@redirectAddProduct'
+        ]);
+        Route::post('/create', [
+            'as' => 'backend.products.create',
+            'uses' => 'Backend\Products\Actions\Add@createProduct'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'backend.products.edit',
+            'uses' => 'Backend\Products\Actions\Update@redirectEditProduct'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'backend.products.update',
+            'uses' => 'Backend\Products\Actions\Update@updateProduct'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'backend.products.delete',
+            'uses' => 'Backend\Products\Actions\Delete@deleteProduct'
         ]);
     });
 });

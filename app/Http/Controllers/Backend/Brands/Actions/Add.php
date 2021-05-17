@@ -23,6 +23,6 @@ class Add extends Index
     public function createBrand(Request $request): RedirectResponse
     {
         $this->brandsService->createBrand($request);
-        return redirect()->route('backend.brands.list');
+        return redirect()->route('backend.brands.index');
     }
 }

@@ -3,6 +3,7 @@
 <head>
     @yield('title')
     @include('admin.links.link-top')
+    @yield('css')
 </head>
 <body>
 <section id="container">
@@ -15,6 +16,7 @@
         @include('admin.patrials.footer')
     </section>
 </section>
-@include('admin.links.link-bottom')
+    @include('admin.links.link-bottom')
+    @yield('js')
 </body>
 </html>
