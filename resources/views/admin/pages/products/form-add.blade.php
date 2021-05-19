@@ -48,7 +48,8 @@
                             </div>
                             <div class="form-group">
                                 <label class>Description</label>
-                                <textarea class="form-control" name="product_desc" style="resize: none"
+                                <textarea class="form-control textarea-tinymce-editor" name="product_desc"
+                                          style="resize: none"
                                           rows="8"></textarea>
                             </div>
                             <div class="form-group">
@@ -96,5 +97,7 @@
 @endsection
 @section('js')
     <script src="{{ asset('public/backend/js/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('public/backend/js/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('public/backend/js/sell/product/add.js') }}"></script>
+    <script src="{{ asset('public/backend/js/sell/product/tinymce.js') }}"></script>
 @endsection

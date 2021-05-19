@@ -20,6 +20,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="{{ asset('public/backend/css/morris.css') }}" type="text/css"/>
 <link rel="stylesheet" href="{{ asset('public/backend/css/monthly.css') }}">
 <link rel="stylesheet" href="{{ asset('public/backend/css/sell/common.css') }}">
-<script src="{{ asset('public/backend/js/jquery2.0.3.min.js') }}"></script>
-<script src="{{ asset('public/backend/js/raphael-min.js') }}"></script>
-<script src="{{ asset('public/backend/js/morris.js') }}"></script>

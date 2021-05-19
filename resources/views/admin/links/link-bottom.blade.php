@@ -1,3 +1,6 @@
+<script src="{{ asset('public/backend/js/jquery2.0.3.min.js') }}"></script>
+<script src="{{ asset('public/backend/js/raphael-min.js') }}"></script>
+<script src="{{ asset('public/backend/js/morris.js') }}"></script>
 <script src="{{ asset('public/backend/js/bootstrap.js') }}"></script>
 <script src="{{ asset('public/backend/js/jquery.dcjqaccordion.2.7.js') }}"></script>
 <script src="{{ asset('public/backend/js/scripts.js') }}"></script>

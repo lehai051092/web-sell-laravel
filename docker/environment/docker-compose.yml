@@ -1,0 +1,161 @@
+version: '2'
+services:
+    nginx:
+        image: mskumji5/nginx
+        labels:
+            - traefik.enable=true
+
+            # HTTP traffic
+            - traefik.http.routers.nginx-${COMPOSE_PROJECT_NAME}.rule=Host(`${VIRTUAL_HOST}`)
+            - traefik.http.routers.nginx-${COMPOSE_PROJECT_NAME}.entrypoints=http
+
+            # HTTPS traffic
+            - traefik.http.routers.nginx-${COMPOSE_PROJECT_NAME}-https.rule=Host(`${VIRTUAL_HOST}`)
+            - traefik.http.routers.nginx-${COMPOSE_PROJECT_NAME}-https.entrypoints=https
+            - traefik.http.routers.nginx-${COMPOSE_PROJECT_NAME}-https.tls=true
+            - traefik.http.routers.nginx-${COMPOSE_PROJECT_NAME}-https.tls.certresolver=letsencrypt
+            - traefik.http.services.nginx-${COMPOSE_PROJECT_NAME}-https.loadbalancer.server.port=80
+
+            # Redirect all http requests to https
+            # - traefik.http.routers.nginx-${COMPOSE_PROJECT_NAME}.middlewares=https-redirect@file
+        networks:
+            - proxy
+            - internal
+        environment:
+            UID: ${UID}
+            GID: ${GID}
+            WORK_DIR: ${WORK_DIR}
+        volumes:
+            - ./nginx-sites.conf:/etc/nginx/templates/default.conf.template
+            - ${WORK_DIR}:${WORK_DIR}:cached
+        restart: unless-stopped
+    # httpd:
+    #     image: mskumji5/httpd
+    #     networks:
+    #         - internal
+    #     environment:
+    #         UID: ${UID}
+    #         GID: ${GID}
+    #         WORK_DIR: ${WORK_DIR}
+    #     volumes:
+    #         - ./httpd.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+    #         - ${WORK_DIR}:${WORK_DIR}:cached
+    #     restart: unless-stopped
+    php:
+        image: mskumji5/php-fpm:${PHP_VERSION}-new
+        networks:
+            - internal
+            - mail
+        environment:
+            UID: ${UID}
+            GID: ${GID}
+            FPM_LISTEN_DEFAULT: 1
+            # XDEBUG_REMOTE_ENABLE: 1
+        volumes:
+            - ./php-custom.ini:/usr/local/etc/php/conf.d/custom.ini
+            - ${WORK_DIR}:${WORK_DIR}:cached
+            - ./smtp:/etc/msmtprc
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        restart: unless-stopped
+    cli:
+        image: mskumji5/php-cli:${PHP_VERSION}-new
+        networks:
+            - internal
+            - mail
+        env_file: blackfire.env
+        environment:
+            UID: ${UID}
+            GID: ${GID}
+            # XDEBUG_REMOTE_ENABLE: 1
+        volumes_from:
+            - php
+        volumes:
+            - ~/.composer:/home/dev/.composer
+            - ~/.ssh:/home/dev/.ssh
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        user: dev
+        tty: true
+        stdin_open: true
+        working_dir: ${WORK_DIR}
+        restart: unless-stopped
+        hostname: cli-${COMPOSE_PROJECT_NAME}-docker
+        links:
+            - nginx:${VIRTUAL_HOST}
+    db:
+        image: mariadb:10.4
+        environment:
+            - MYSQL_ROOT_PASSWORD=123123
+            - MYSQL_ALLOW_EMPTY_PASSWORD=no
+            - MYSQL_DATABASE=web-sell
+        volumes:
+            - ./mysql.cnf:/etc/mysql/conf.d/custom.cnf
+            - ./../data/mysql:/var/lib/mysql:delegated
+        command: --default-authentication-plugin=mysql_native_password
+        networks:
+            - internal
+            - database
+        restart: unless-stopped
+#    elasticsearch:
+#        image: mskumji5/elasticsearch:${ELASTICSEARCH_VERSION}
+#        environment:
+#            - ES_JAVA_OPTS=-Xms256m -Xmx512m
+#        volumes:
+#            - elasticsearch_data:/usr/share/elasticsearch/data
+#        networks:
+#            - internal
+#        init: true
+#        restart: unless-stopped
+    # cron:
+    #     image: mskumji5/crontab
+    #     environment:
+    #         - CRONTAB_PROJECT=${COMPOSE_PROJECT_NAME}
+    #     networks:
+    #         - internal
+    #     volumes:
+    #         - /var/run/docker.sock:/var/run/docker.sock:ro
+    #         - ./cron.json:/opt/crontab/config.json:rw
+    #     restart: unless-stopped
+    # redis:
+    #     image: redis:5
+    #     command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru --appendonly yes
+    #     networks:
+    #         - internal
+    #     volumes:
+    #         - redis_data:/data
+    #     restart: unless-stopped
+    # varnish:
+    #     image: varnish:6
+    #     command: -p http_resp_hdr_len=65536 -p http_resp_size=98304 -p workspace_backend=256k -p workspace_client=256k
+    #     networks:
+    #         - internal
+    #     volumes:
+    #         - ./varnish.vcl:/etc/varnish/default.vcl
+    #     restart: unless-stopped
+    # rabbitmq:
+    #     image: rabbitmq:3.8-management-alpine
+    #     environment:
+    #         RABBITMQ_DEFAULT_USER: admin
+    #         RABBITMQ_DEFAULT_PASS: admin
+    #     networks:
+    #         - internal
+    #     restart: unless-stopped
+    # blackfire:
+    #     image: blackfire/blackfire
+    #     env_file: blackfire.env
+    #     networks:
+    #         - internal
+    #     restart: unless-stopped
+networks:
+    proxy:
+        external: true
+    database:
+        external: true
+    mail:
+        external: true
+    internal:
+        driver: bridge
+volumes:
+    elasticsearch_data:
+    redis_data:

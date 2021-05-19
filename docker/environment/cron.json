@@ -1,0 +1,7 @@
+{
+    "m2 cron run": {
+        "schedule": "*/5 * * * *",
+        "command": "php bin/magento cron:run 2>&1 | grep -v 'Ran jobs by schedule' >> var/log/magento.cron.log",
+        "container": "cli"
+    }
+}
