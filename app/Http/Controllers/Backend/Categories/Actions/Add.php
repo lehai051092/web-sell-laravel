@@ -13,7 +13,7 @@ class Add extends Index
      */
     public function redirectAddCategory()
     {
-        $htmlOption = $this->categoriesService->getCategoriesRecursive($parentId = '');
+        $htmlOption = $this->categoriesService->getCategoriesRecursive($parentId = '', $currentCategoryId = '');
         return view('admin.pages.categories.form-add', compact('htmlOption'));
     }
 

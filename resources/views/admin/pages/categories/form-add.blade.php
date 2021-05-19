@@ -21,7 +21,7 @@
                                 <label>Parent</label>
                                 <select class="form-control m-bot15" name="category_parent">
                                     <option
-                                        value="{{ \App\Helper\VariablesInterface::OPTION_VALUE_ROOT_CATEGORY }}">
+                                        value="{{ \App\Helper\VariablesInterface::OPTION_VALUE_ROOT }}">
                                         Root category
                                     </option>
                                     {!! $htmlOption !!}

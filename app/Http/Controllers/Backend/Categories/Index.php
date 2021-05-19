@@ -30,6 +30,7 @@ class Index extends Controller
     public function listCategory()
     {
         $categories = $this->categoriesService->getCategoriesPaginate(VariablesInterface::LIMIT_PAGINATE_PAGE);
-        return view('admin.pages.categories.index', compact('categories'));
+        $categoriesParent = $this->categoriesService->getCategoriesParent();
+        return view('admin.pages.categories.index', compact('categories', 'categoriesParent'));
     }
 }

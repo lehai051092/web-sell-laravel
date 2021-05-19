@@ -28,7 +28,7 @@
                                     <div class="col-lg-8">
                                         <select class="form-control m-bot15 categories-select" name="category_id">
                                             <option
-                                                value="{{ \App\Helper\VariablesInterface::OPTION_VALUE_ROOT_CATEGORY }}">
+                                                value="{{ \App\Helper\VariablesInterface::OPTION_VALUE_ROOT }}">
                                                 Root category
                                             </option>
                                             {!! $htmlCategoriesOption !!}

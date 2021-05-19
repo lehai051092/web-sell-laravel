@@ -11,6 +11,16 @@
                 <li class="sub-menu">
                     <a href="javascript:void(0)">
                         <i class="fa fa-book"></i>
+                        <span>Menus</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{ route('backend.menus.index') }}">List</a></li>
+                        <li><a href="{{ route('backend.menus.add') }}">Add new menu</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-book"></i>
                         <span>Categories</span>
                     </a>
                     <ul class="sub">

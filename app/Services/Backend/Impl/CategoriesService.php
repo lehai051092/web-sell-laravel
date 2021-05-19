@@ -22,17 +22,25 @@ class CategoriesService implements CategoriesServiceInterface
     protected $helper;
 
     /**
+     * @var CategoriesRecursive
+     */
+    protected $categoriesRecursive;
+
+    /**
      * CategoriesServiceImpl constructor.
      * @param CategoriesRepositoryInterface $categoriesRepository
      * @param Category $helper
+     * @param CategoriesRecursive $categoriesRecursive
      */
     public function __construct
     (
         CategoriesRepositoryInterface $categoriesRepository,
-        Category $helper
+        Category $helper,
+        CategoriesRecursive $categoriesRecursive
     ) {
         $this->categoriesRepository = $categoriesRepository;
         $this->helper = $helper;
+        $this->categoriesRecursive = $categoriesRecursive;
     }
 
     /**
@@ -55,14 +63,13 @@ class CategoriesService implements CategoriesServiceInterface
 
     /**
      * @param $parentId
+     * @param $currentCategoryId
      * @return string
      */
-    public function getCategoriesRecursive($parentId): string
+    public function getCategoriesRecursive($parentId, $currentCategoryId): string
     {
         $data = $this->getData();
-        $categoriesRecursive = new CategoriesRecursive($data);
-
-        return $categoriesRecursive->getCategoriesRecursive($id = VariablesInterface::OPTION_VALUE_ROOT_CATEGORY, $parentId);
+        return $this->categoriesRecursive->getCategoriesRecursive($data, $id = VariablesInterface::OPTION_VALUE_ROOT, $parentId, $currentCategoryId);
     }
 
     /**
@@ -101,5 +108,14 @@ class CategoriesService implements CategoriesServiceInterface
     public function findById($id)
     {
         return $this->categoriesRepository->findById($id);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategoriesParent(): string
+    {
+        $data = $this->getData();
+        return $this->categoriesRecursive->getCategoriesParent($data, $id = VariablesInterface::OPTION_VALUE_ROOT);
     }
 }

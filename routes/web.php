@@ -37,6 +37,34 @@ Route::prefix('admin')->group(function () {
         'uses' => 'Backend\Index@logoutDashBoard'
     ]);
 
+    // Menus
+    Route::prefix('menus')->group(function () {
+        Route::get('/', [
+            'as' => 'backend.menus.index',
+            'uses' => 'Backend\Menus\Index@listMenu'
+        ]);
+        Route::get('/add', [
+            'as' => 'backend.menus.add',
+            'uses' => 'Backend\Menus\Actions\Add@redirectAddMenu'
+        ]);
+        Route::post('/create', [
+            'as' => 'backend.menus.create',
+            'uses' => 'Backend\Menus\Actions\Add@createMenu'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'backend.menus.edit',
+            'uses' => 'Backend\Menus\Actions\Update@redirectEditMenu'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'backend.menus.update',
+            'uses' => 'Backend\Menus\Actions\Update@updateMenu'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'backend.menus.delete',
+            'uses' => 'Backend\Menus\Actions\Delete@deleteMenu'
+        ]);
+    });
+
     // Categories
     Route::prefix('categories')->group(function () {
         Route::get('/', [

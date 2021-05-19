@@ -9,7 +9,7 @@ interface CategoriesServiceInterface
 
     public function createCategory($request);
 
-    public function getCategoriesRecursive($parentId);
+    public function getCategoriesRecursive($parentId, $currentCategoryId);
 
     public function getCategoriesPaginate($limit);
 
@@ -18,4 +18,6 @@ interface CategoriesServiceInterface
     public function deleteCategory($id);
 
     public function findById($id);
+
+    public function getCategoriesParent();
 }

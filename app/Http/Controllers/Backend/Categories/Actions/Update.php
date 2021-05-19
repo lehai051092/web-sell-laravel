@@ -15,7 +15,7 @@ class Update extends Index
     public function redirectEditCategory($id)
     {
         $category = $this->categoriesService->findById($id);
-        $htmlOption = $this->categoriesService->getCategoriesRecursive($category->category_parent);
+        $htmlOption = $this->categoriesService->getCategoriesRecursive($category->category_parent, $category->category_id);
         return view('admin.pages.categories.form-edit', compact('htmlOption', 'category'));
     }
 
